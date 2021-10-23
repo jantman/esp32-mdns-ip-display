@@ -10,6 +10,8 @@ My local makerspace has a bunch of 3D printers; they all use normal dynamic DHCP
 
 For microcontrollers, I used off-brand ESP32 clones from Amazon, specifically the [DORHEA 4PCS ESP32 Development Board ESP-32S Microcontroller Processor Integrated Chip CP2102 WiFi NodeMCU-32S ESP-WROOM-32 Compatible with Ardu ino IDE](https://www.amazon.com/gp/product/B086MLNH7N/) which currently cost $30 USD for a 4-pack. **Note** that I use the ESP32 because its MicroPython port includes built-in support for mDNS A record lookups, so no additional libraries or code are needed for that.
 
+The display I'm currently using is a [SeeedStudio Grove LCD with RGB Backlight](https://wiki.seeedstudio.com/Grove-LCD_RGB_Backlight/); the backlight is nice for showing status. Expect other displays to be supported soon.
+
 ## Getting Started
 
 1. Clone this repository locally and set up a Python >= 3.4 (currently tested using 3.9) virtualenv with ``python3 -mvenv venv`` and then activate with ``source venv/bin/activate``.
