@@ -27,14 +27,16 @@ SOFTWARE.
 """
 import machine
 import micropython
+
+micropython.alloc_emergency_exception_buf(100)
+
 import network
 from machine import Pin, I2C
 from socket import getaddrinfo
 from binascii import hexlify
-micropython.alloc_emergency_exception_buf(100)
 from time import sleep
-
 from config import SSID, WPA_KEY, HOSTNAME, SCL_PIN, SDA_PIN
+
 
 def debugprint(*args):
     print(*args)
