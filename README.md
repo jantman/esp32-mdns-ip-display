@@ -12,7 +12,7 @@ My local makerspace has a bunch of 3D printers; they all use normal dynamic DHCP
 
 For microcontrollers, I used off-brand ESP32 clones from Amazon, specifically the [DORHEA 4PCS ESP32 Development Board ESP-32S Microcontroller Processor Integrated Chip CP2102 WiFi NodeMCU-32S ESP-WROOM-32 Compatible with Ardu ino IDE](https://www.amazon.com/gp/product/B086MLNH7N/) which currently cost $30 USD for a 4-pack. **Note** that I use the ESP32 because its MicroPython port includes built-in support for mDNS A record lookups, so no additional libraries or code are needed for that.
 
-The display I'm currently using is a [SeeedStudio Grove LCD with RGB Backlight](https://wiki.seeedstudio.com/Grove-LCD_RGB_Backlight/); the backlight is nice for showing status. Expect other displays to be supported soon.
+The display I'm currently using is a cheap Amazon 16x2 backlit LCD using a HD44780 character LCD connected via PCF8574 on I2C; this seems to be the current standard for very inexpensive I2C 16x2 displays. I'm using [Dave Hyland's awesome python_lcd library](https://github.com/dhylands/python_lcd) for all LCD handling code (so it should be simple to switch to any other display supported by that project).
 
 ## Getting Started
 
@@ -27,6 +27,7 @@ The display I'm currently using is a [SeeedStudio Grove LCD with RGB Backlight](
 
 1. Install [mpremote](https://pypi.org/project/mpremote/) for deploying files and accessing the REPL: ``pip install mpremote``
 2. Copy [config_example.py](config_example.py) to ``config.py`` and edit as needed.
-3. Write the config file to the ESP32: ``mpremote fs cp config.py :config.py``
-4. Write the application to the ESP32: ``mpremote fs cp main.py :main.py``
-5. Get a REPL on the device ``mpremote repl`` and then soft-reset it to run the application with Ctrl+D. You should see some debugging output, and the result of mDNS address resolution.
+3. Write the LCD libraries to the ESP32: ``mpremote fs cp lcd_api.py :lcd_api.py && mpremote fs cp esp8266_i2c_lcd.py :esp8266_i2c_lcd.py``
+4. Write the config file to the ESP32: ``mpremote fs cp config.py :config.py``
+5. Write the application to the ESP32: ``mpremote fs cp main.py :main.py``
+6. Get a REPL on the device ``mpremote repl`` and then soft-reset it to run the application with Ctrl+D. You should see some debugging output, and the result of mDNS address resolution.
